@@ -3,7 +3,7 @@
 const morgan = require('morgan');
 const express = require('express');
 
-const { top50 } = require('./data/top50');
+const { top50, mostPopArtist } = require('./data/top50');
 
 const PORT = process.env.PORT || 8000;
 
@@ -16,10 +16,25 @@ app.set('view engine', 'ejs');
 
 // endpoints here
 app.get('/top50', (req, res) => {
-    res.status(404);
+    res.status(200);
     res.render('pages/top50', {
         title: 'Top 50 Songs Streamed on Spotify',
         top50: top50
+    });
+});
+
+app.get('/top50/popular-artist', (req, res) => {
+    const mostPopularArtistInChart = mostPopArtist(top50);
+    let mostPopularArtistInChartSongs = [];
+
+    top50.forEach(song => {
+        if(song.artist === mostPopularArtistInChart) mostPopularArtistInChartSongs.push(song);
+    });
+    
+    res.status(200);
+    res.render('pages/top50', {
+        title: 'Most Popular Artist',
+        mostPopular: mostPopularArtistInChartSongs
     });
 });
 

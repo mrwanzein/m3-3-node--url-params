@@ -1,3 +1,28 @@
+const mostPopArtist = (arr) => {
+  let artistArr = [];
+  let songObjectWithPopularity = {};
+  let artistWithPopularityArr = [];
+
+  arr.forEach((song) => {
+    artistArr.push(song.artist);
+  });
+
+  for (let i = 0; i < artistArr.length; i++) {
+    songObjectWithPopularity[artistArr[i]] = 0;
+    for (let j = 0; j < artistArr.length; j++) {
+      if (artistArr[i] === artistArr[j]) {
+        songObjectWithPopularity[artistArr[i]] += 1;
+      }
+    }
+  }
+
+  for (const artist in songObjectWithPopularity) {
+    artistWithPopularityArr.push([artist, songObjectWithPopularity[artist]]);
+  }
+
+  return artistWithPopularityArr.sort((a, b) => b[1] - a[1])[0][0];
+};
+
 const top50 = [
     {
         rank: 1,
@@ -350,4 +375,4 @@ const top50 = [
     },
 ];
 
-module.exports = { top50 };
+module.exports = { top50, mostPopArtist };

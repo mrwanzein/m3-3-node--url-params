@@ -1,3 +1,10 @@
-<% top50.forEach(song => { %>
-    <li class="song-single"><%- `<span class="rank-streams"><span class="rank">#${song.rank}</span><br>(${song.streams} streams)</span> <span class="title-artist"><span class="title">${song.title}</span><br><span class="artist">by ${song.artist}</span></span> <span class="pub-date">publication date: ${song.publicationDate}</span>` %></li>
-<% }); %>
+<% if (title === "Most Popular Artist") { %>
+    <% mostPopular.forEach(song => { %>
+        <li class="song-single"><%- `<span class="rank-streams"><span class="rank">#${song.rank}</span><br>(${song.streams} streams)</span> <span class="title-artist"><span class="title">${song.title}</span><br><span class="artist">by ${song.artist}</span></span> <span class="pub-date">publication date: ${song.publicationDate}</span>` %></li>
+    <% }); %>
+<% } else { %>
+
+    <% top50.forEach(song => { %>
+        <li class="song-single"><%- `<span class="rank-streams"><span class="rank">#${song.rank}</span><br>(${song.streams} streams)</span> <span class="title-artist"><span class="title">${song.title}</span><br><span class="artist">by ${song.artist}</span></span> <span class="pub-date">publication date: ${song.publicationDate}</span>` %></li>
+    <% }); %>
+<% } %>
