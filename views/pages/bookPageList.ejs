@@ -1,0 +1,22 @@
+<%- include( '../partials/header') %>
+<form onsubmit="event.preventDefault(); validateMyForm();"> 
+    <label>Choose to filter by genre: </label> 
+    <input list="genre" id="genreValue">
+    <datalist id="genre">
+        <option value="fiction" />
+        <option value="drama" />
+        <option value="non-fiction" />
+        <option value="graphic-novel" />
+    </datalist>
+    <button onclick="location.href='http\:\/\/localhost:8000/books/genre/' + document.getElementById('genreValue').value">Filter</button>
+</form> 
+<div class="booklist">
+    <ul>
+        <% if(bookType) { %>
+            <%- include( '../partials/filteredBooks') %>
+        <% } else { %>
+            <%- include( '../partials/books') %>
+        <% } %>
+    </ul>
+</div>
+<%- include( '../partials/footer') %>

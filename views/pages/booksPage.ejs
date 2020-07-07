@@ -1,0 +1,12 @@
+<%- include( '../partials/header') %>
+<div class="book-box">
+        <% for(const prop in book) { %>
+            <% if(prop === 'imgUrl' || prop === 'id') { %>
+                <% continue; %>
+            <% } else { %>
+                <%- `<p style="margin: 0 10px">${book[prop]}</p>` %>
+            <% } %>
+        <% } %>
+            <img src=<%- book.imgUrl %> alt="Book image">
+</div>
+<%- include( '../partials/footer') %>

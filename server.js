@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const express = require('express');
 
 const { top50, mostPopArtist } = require('./data/top50');
+const { books } = require('./data/books');
 
 const PORT = process.env.PORT || 8000;
 
@@ -60,6 +61,43 @@ app.get('/top50/song/:songNum', (req, res) => {
         });
     }
 
+});
+
+app.get('/books', (req, res) => {
+        res.status(200);
+        res.render('pages/bookPageList', {
+            title: `List of good books`,
+            books: books,
+            bookType: undefined
+        });
+});
+
+app.get('/books/:bookId', (req, res) => {
+    const { bookId } = req.params;
+    if(bookId < 101 || bookId > 125 || bookId === 'genre') {
+        show404(req, res);
+    } else {
+        res.status(200);
+        res.render('pages/booksPage', {
+            title: `Book #${bookId}`,
+            book: books.filter(x => x.id === parseInt(bookId))[0]
+        });
+    }
+
+});
+
+app.get('/books/genre/:bookType', (req, res) => {
+    const { bookType } = req.params;
+    if(bookType === undefined) {
+        show404();
+    } else {
+        res.status(200);
+            res.render('pages/bookPageList', {
+                title: `${bookType} books`,
+                books: books.filter(x => x.type === bookType),
+                bookType: bookType
+            });
+    }
 });
 
 // handle 404s

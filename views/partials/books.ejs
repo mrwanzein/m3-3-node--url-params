@@ -1,0 +1,3 @@
+<% books.forEach(book => { %>
+    <li class="single-book"><%- book.title %> <a href="http://localhost:8000/books/<%- book.id %>"><%- book.id %></a></li>
+<% }); %>

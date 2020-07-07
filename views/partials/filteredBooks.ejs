@@ -1,0 +1,3 @@
+<% books.forEach(book => { %>
+    <li class="single-book"><%- book.title %> by <%- book.author %> <a href="http://localhost:8000/books/<%- book.id %>"><%- book.id %></a><img style="transform: scale(0.5)" src=<%- book.imgUrl %> alt="Book cover"></li>
+<% }); %>
