@@ -49,13 +49,14 @@ app.get('/top50/popular-artist', (req, res) => {
 app.get('/top50/song/:songNum', (req, res) => {
     const { songNum } = req.params;
 
-    if(songNum > top50.length) {
+    if(songNum > top50.length || songNum <= 0) {
         show404(req, res);
     } else {
         res.status(200);
         res.render('pages/songPage', {
             title: `Song #${songNum}`,
-            song: top50[songNum - 1]
+            song: top50[songNum - 1],
+            songNum: songNum
         });
     }
 

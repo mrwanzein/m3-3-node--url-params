@@ -8,4 +8,8 @@
         <p class="song-streams"><%= song.streams %></p>
     </div>
 </div>
+<div class="buttons">
+    <button onclick="location.href='http\:\/\/localhost:8000/top50/song/' + '<%- (songNum - 1) %>'">Previous</button>
+    <button onclick="location.href='http\:\/\/localhost:8000/top50/song/' + (parseInt('<%= songNum  %>') + 1)">Next</button>
+</div>
 <%- include( '../partials/footer') %>
